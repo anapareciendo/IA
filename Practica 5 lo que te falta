@@ -1,0 +1,39 @@
+def muestreo_con_rechazo(red,consulta,evidencia,N):
+    muestras = [muestra_aleatoria(red) for i in range(N)]
+    muestrasValidas = []
+    for muestra in muestras:
+        if all(muestra[variable] == evidencia[variable]
+              for variable in evidencia):
+            muestrasValidas.append(muestra)
+    cardinalidaddes = [red.get_cpds(variable).variable_card 
+                      for variable in consulta]
+    combinaciones = intertools.product(*(range(i)
+                                        for i in cadinalidades))
+    frecuencias = {combinacion : 0 
+                   for combinacion in combinaciones}
+    for muestra in muestrasValidas:
+        combinacion = tuple(muestra[variable] 
+                       for variable in consulta)
+        frecuencias[combinación] += 1
+    
+#falta guardarlo en una lista. Viene arriba varibles, cardinalidades y valores. 
+  #es decir consulta, cardinalidades y consulta como lista  
+    print(frecuencias)
+    print(combinaciones)
+    print(len(muestras)) #generadas
+    print(len(muestrasValidas)) #validas
+    print(cardinalidades) #para saber las cardinalidades
+
+random.seed(12345)
+print(muestreo_con_rechazo(Modelo_alarma, ['Robo'], {'Llamada': 1, 'Noticia': 0}, 10000)) 
+
+for i in intertools.product(range(2),range(3)):
+    print(i)  #todas las combinaciones posibles. 
+             #Lo necesito para saber las combinaciones de las variables de consulta.
+            # Necesito saber la cardinalidad de las variables de consulta
+            
+            
+            
+            
+random.seed(12345)
+print(muestreo_con_rechazo(Modelo_alarma, ['Robo'], {'Llamada': 1, 'Noticia': 0}, 10000))
