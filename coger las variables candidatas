@@ -1,0 +1,26 @@
+#eliminacion de variables irrelevantes
+
+def descarta(m, c, e):
+    lista = c+e
+    descartados = []
+    padres = []
+    for l in lista:
+        subgrafo = Modelo_residentevil.subgraph(networkx.ancestors(Modelo_residentevil, l))
+        for s in subgrafo:
+            padres.append(s)
+                          
+    for n in m.nodes():
+        if n not in lista and n not in padres:
+            descartados.append(n)
+                  
+    return descartados
+    
+    
+   
+   
+  
+ def verosimilitud(modelo, consulta, evidencias):
+    descartes = descarta(modelo, consulta, evidencias)
+    nodos = modelo.nodes()
+    candidatas = nodos - descartes - consulta - evidencias
+    
